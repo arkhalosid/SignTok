@@ -94,10 +94,10 @@ class Signer {
    */
   sign(url_str) {
     const url = new URL(url_str);
-    const signature = this.signature(url.toString());
-    url.searchParams.append('_signature', signature);
     const bogus = this.bogus(url.searchParams.toString());
     url.searchParams.append('X-Bogus', bogus);
+    const signature = this.signature(url.toString());
+    url.searchParams.append('_signature', signature);
     const xttparams = this.xttparams(url.searchParams.toString());
     return {
       signature: signature,
